@@ -7,4 +7,6 @@ ensure NEWS.md
 
 Desirable:
 
-ensure documentation
+ensure documentation (pydocstyle)
+.gitignore
+CI stuff

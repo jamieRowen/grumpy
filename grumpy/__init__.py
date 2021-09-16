@@ -12,6 +12,10 @@ register = create_register(ALL_CHECKS)
 
 @register
 def check_lint():
+    """
+    Run all registered lint checks, see dir(grumpy.lint)
+    for specific check functions
+    """
     results = dict()
     strings = dict()
     for k, v in LINT_CHECKS.items():
