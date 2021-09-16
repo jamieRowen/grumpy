@@ -1,3 +1,7 @@
+## grumpy 0.1.2 _2021-09-17_
+
+    * Start adding in some CLI via cleo
+
 ## grumpy 0.1.1 _2021-09-16_
 
     * Add some initial news file checks

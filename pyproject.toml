@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "grumpy"
-version = "0.1.1"
+version = "0.1.2"
 description = ""
 authors = ["Jamie <jamie@jumpingrivers.com>"]
 
@@ -8,6 +8,10 @@ authors = ["Jamie <jamie@jumpingrivers.com>"]
 python = "^3.7"
 rich = "^10.9.0"
 toml = "^0.10.2"
+cleo = "^0.8.1"
+
+[tool.poetry.scripts]
+grumpy = "grumpy.application:main"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"
