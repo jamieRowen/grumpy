@@ -4,6 +4,7 @@ ensure lint
 ensure version increment
 ensure tests pass
 ensure NEWS.md
+ensure README.md
 
 Desirable:
 

@@ -1,3 +1,8 @@
+## grumpy 0.1.3 _2021-09-17_
+
+    * Update README
+    * Some improvements to the CLI
+
 ## grumpy 0.1.2 _2021-09-17_
 
     * Start adding in some CLI via cleo
