@@ -12,7 +12,7 @@ This module contains the following functions:
     * has_flake8 - ensures that a .flake8 file exists
     * run_flake8 - run the flake8 linter and capture the output
 
-The LINT_CHECKS dictionary shows those Callables which are currently 
+The LINT_CHECKS dictionary shows those Callables which are currently
 registered in the module for checking.
 """
 

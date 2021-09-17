@@ -24,7 +24,7 @@ class Reporter:
     """A decorator class for console reporting
 
     This class can be used as a decorator to add success and fail
-    text to the checking functions. Defaults to a thumbs up or 
+    text to the checking functions. Defaults to a thumbs up or
     thumbs down followed by the function name for pass and fail
     respectively.
 
@@ -55,5 +55,5 @@ class Reporter:
         if res:
             console.print(self.happy)
         else:
-            console.print( self.grumpy)
+            console.print(self.grumpy)
         return res, string

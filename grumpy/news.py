@@ -1,5 +1,3 @@
-import datetime
-from grumpy.lint import unregister
 from .reporter import console, Reporter
 from .utils import create_register, create_unregister, detect_package_details
 from typing import Tuple
@@ -7,10 +5,12 @@ from datetime import date
 import re
 import pathlib
 
+
 NEWS_CHECKS = dict()
 
 register = create_register(NEWS_CHECKS)
 unregister = create_unregister(NEWS_CHECKS)
+
 
 @register
 @Reporter
@@ -32,9 +32,9 @@ def newsfile_format() -> Tuple[bool, str]:
     failflag = False
     pkg_details = detect_package_details()
     news = _read_news()[:3]
-    expected_first_line = fr"## {pkg_details['name']} {pkg_details['version']} [_\*]20\d{{2}}-\d{{2}}-\d{{2}}[_\*]$"
-    expected_second_line =  fr"^\s+$"
-    expected_third_line = fr"^\s+\* "
+    expected_first_line = fr"## {pkg_details['name']} {pkg_details['version']} [_\*]20\d{{2}}-\d{{2}}-\d{{2}}[_\*]$"  # noqa: E501 ignore line length lint in this case
+    expected_second_line = r"^\s+$"
+    expected_third_line = r"^\s+\* "
     if re.match(expected_first_line, news[0].strip()) is None:
         failflag = True
         message += f"""
@@ -78,7 +78,7 @@ def news_version_matches_toml():
     toml_colour, news_colour = "red", "green"
     if toml_version > news_version:
         toml_colour, news_colour = "green", "red"
-    
+
     retval = True, "OK"
     if news_version != toml_version:
         message = f"""
