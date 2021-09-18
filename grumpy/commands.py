@@ -1,61 +1,9 @@
-from .reporter import console
-from .lint import LINT_CHECKS
-from .news import NEWS_CHECKS
-from .utils import create_register
+from .everything import check_everything
+from .lint import check_lint
+from .news import check_news
 
-
-ALL_CHECKS = dict()
-FINAL_MESSAGE = {
-    'issues': 0
+COMMANDS = {
+    'everything': check_everything,
+    'lint': check_lint,
+    'news': check_news
 }
-register = create_register(ALL_CHECKS)
-
-
-@register
-def check_everything():
-    """Run all registered checks in all categories
-    """
-    for k, v, in ALL_CHECKS.items():
-        # don't run itself
-        if k != "check_everything":
-            v()
-
-
-@register
-def check_lint():
-    """
-    Run all registered lint checks, see dir(grumpy.lint)
-    for specific check functions
-    """
-
-    fstub = "lints"
-    results = dict()
-    strings = dict()
-    for k, v in LINT_CHECKS.items():
-        res, string = v()
-        FINAL_MESSAGE['issues'] += not res
-        strings[k] = string
-        results[k] = res
-        yield "lint", k, res, string, fstub
-
-    if not all([res for _, res in results.items()]):
-        console.print(f"""
-            [red] Issues with {fstub} checks [/red]
-            See grumpy_feedback/{fstub}.txt for saved info
-        """)
-
-
-@register
-def check_news():
-    results = dict()
-    strings = dict()
-    for k, v in NEWS_CHECKS.items():
-        res, string = v()
-        FINAL_MESSAGE['issues'] += not res
-        strings[k] = string
-        results[k] = res
-    if not all([res for _, res in results.items()]):
-        console.print("""
-        [red] Issues with news checks [/red]
-        See grumpy_feedback/next.txt for saved info
-        """)

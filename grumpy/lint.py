@@ -7,100 +7,64 @@ if desired to be skipped.
 
 This module contains the following functions:
 
-    * register - register a new function to the lint checks
-    * unregister - remove a function from the collection to be checked
     * has_flake8 - ensures that a .flake8 file exists
     * run_flake8 - run the flake8 linter and capture the output
 
-The LINT_CHECKS dictionary shows those Callables which are currently
-registered in the module for checking.
+The LINT_CHECKS Callable object is a CheckCollection which contains
+the register of the current lint checks, see grumpy.lint.LINT_CHECKS.collection
+
+New functions that return a CheckResponse object can be added to the register
+with LINT_CHECKS.register(func: Callable[[Any], CheckResponse])
 """
 
 import pathlib
-from .reporter import Reporter, console
-from .utils import create_register
-from typing import Tuple
+from typing import Iterator, Tuple
 import subprocess
 from .checks import CheckResponse, CheckCollection
+from .checks import as_CheckResponse, call_check_collection
 
 
-# LINT_CHECKS = dict()
 LINT_CHECKS = CheckCollection("lint")
 
-# register = create_register(LINT_CHECKS)
 
+def check_lint() -> Iterator[CheckResponse]:
+    """Run all registered lint checks
 
-# def unregister(name: str) -> None:
-#     """Unregister a Callable from the LINT_CHECKS
+    This is really just a wrapper for LINT_CHECKS()
+    callable object, that adds a table summary of output
+    from the resultant generator
+    """
+    return call_check_collection(LINT_CHECKS)
 
-#     Parameters
-#     ----------
-#     name: str
-#         name of a Callable that should be unregistered from the lint
-#         checks to be run
-#     """
-#     LINT_CHECKS.pop(name)
-#     return None
 
 @LINT_CHECKS.register
-def has_flake8() -> CheckResponse:
+@as_CheckResponse
+def has_flake8() -> Tuple[bool, str]:
     """Checks for the existence of a flake 8 file
     """
-    retval = CheckResponse("Has Flake8 file", True, "")
+    retval = True, ""
     if not pathlib.Path(".flake8").exists():
-        retval = CheckResponse("Has Flake8 file", False, "Missing .flake8 file")
+        retval = False, "Missing .flake8 file"
     return retval
 
-LINT_CHECKS2 = CheckCollection('test')
-@LINT_CHECKS2.register
-def run_flake8() -> CheckResponse:
+
+@LINT_CHECKS.register
+@as_CheckResponse
+def run_flake8() -> Tuple[bool, str]:
     """Runs flake8 linter
 
     flake8 is run on a subprocess with any output captured and returned
     """
-    
+
     # only run if there is a flake8 file
     if not has_flake8():
-        retval =  CheckResponse("Run Flake 8", False, "No flake 8 file")
+        retval = False, "No flake 8 file"
     else:
-        retval = CheckResponse("Run Flake 8", True, "")
+        retval = True, ""
         output = subprocess.run(
             'flake8', capture_output=True
         )
         if output.returncode != 0:
-            retval = CheckResponse("Run Flake 8", False, '\n'.join(
-                [output.stdout.decode('utf8'), output.stderr.decode('utf8')]))
+            retval = False, '\n'.join(
+                [output.stdout.decode('utf8'), output.stderr.decode('utf8')])
     return retval
-
-# @register
-# @Reporter
-# def has_flake8() -> Tuple[bool, str]:
-#     """Checks for the existence of a flake 8 file
-#     """
-#     retval = True, "OK"
-#     if not pathlib.Path(".flake8").exists():
-#         retval = False, "Missing .flake8"
-#     return retval
-
-
-# @register
-# @Reporter
-# def run_flake8() -> Tuple[bool, str]:
-#     """Runs flake8 linter
-
-#     flake8 is run on a subprocess with any output captured and returned
-#     """
-    
-#     # only run if there is a flake8 file
-#     if not has_flake8():
-#         pass
-#     retval = True, "OK"
-#     output = subprocess.run(
-#         'flake8', capture_output=True
-#     )
-#     if output.returncode != 0:
-#         retval = False, '\n'.join(
-#             [output.stdout.decode('utf8'), output.stderr.decode('utf8')])
-#         # console.print(output.stdout.decode('utf8'))
-#         # console.print(output.stderr.decode('utf8'))
-#     return retval
