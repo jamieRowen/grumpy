@@ -21,51 +21,86 @@ from .reporter import Reporter, console
 from .utils import create_register
 from typing import Tuple
 import subprocess
+from .checks import CheckResponse, CheckCollection
 
 
-LINT_CHECKS = dict()
+# LINT_CHECKS = dict()
+LINT_CHECKS = CheckCollection("lint")
 
-register = create_register(LINT_CHECKS)
-
-
-def unregister(name: str) -> None:
-    """Unregister a Callable from the LINT_CHECKS
-
-    Parameters
-    ----------
-    name: str
-        name of a Callable that should be unregistered from the lint
-        checks to be run
-    """
-    LINT_CHECKS.pop(name)
-    return None
+# register = create_register(LINT_CHECKS)
 
 
-@register
-@Reporter
-def has_flake8() -> Tuple[bool, str]:
+# def unregister(name: str) -> None:
+#     """Unregister a Callable from the LINT_CHECKS
+
+#     Parameters
+#     ----------
+#     name: str
+#         name of a Callable that should be unregistered from the lint
+#         checks to be run
+#     """
+#     LINT_CHECKS.pop(name)
+#     return None
+
+@LINT_CHECKS.register
+def has_flake8() -> CheckResponse:
     """Checks for the existence of a flake 8 file
     """
-    retval = True, "OK"
+    retval = CheckResponse("Has Flake8 file", True, "")
     if not pathlib.Path(".flake8").exists():
-        retval = False, "Missing .flake8"
+        retval = CheckResponse("Has Flake8 file", False, "Missing .flake8 file")
     return retval
 
-
-@register
-@Reporter
-def run_flake8() -> Tuple[bool, str]:
+LINT_CHECKS2 = CheckCollection('test')
+@LINT_CHECKS2.register
+def run_flake8() -> CheckResponse:
     """Runs flake8 linter
 
     flake8 is run on a subprocess with any output captured and returned
     """
-    retval = True, "OK"
-    output = subprocess.run(
-        'flake8', capture_output=True
-    )
-    if output.returncode != 0:
-        retval = False, '\n'.join(
-            [output.stdout.decode('utf8'), output.stderr.decode('utf8')])
-        console.print(output.stdout.decode('utf8'))
-        console.print(output.stderr.decode('utf8'))
+    
+    # only run if there is a flake8 file
+    if not has_flake8():
+        retval =  CheckResponse("Run Flake 8", False, "No flake 8 file")
+    else:
+        retval = CheckResponse("Run Flake 8", True, "")
+        output = subprocess.run(
+            'flake8', capture_output=True
+        )
+        if output.returncode != 0:
+            retval = CheckResponse("Run Flake 8", False, '\n'.join(
+                [output.stdout.decode('utf8'), output.stderr.decode('utf8')]))
     return retval
+
+# @register
+# @Reporter
+# def has_flake8() -> Tuple[bool, str]:
+#     """Checks for the existence of a flake 8 file
+#     """
+#     retval = True, "OK"
+#     if not pathlib.Path(".flake8").exists():
+#         retval = False, "Missing .flake8"
+#     return retval
+
+
+# @register
+# @Reporter
+# def run_flake8() -> Tuple[bool, str]:
+#     """Runs flake8 linter
+
+#     flake8 is run on a subprocess with any output captured and returned
+#     """
+    
+#     # only run if there is a flake8 file
+#     if not has_flake8():
+#         pass
+#     retval = True, "OK"
+#     output = subprocess.run(
+#         'flake8', capture_output=True
+#     )
+#     if output.returncode != 0:
+#         retval = False, '\n'.join(
+#             [output.stdout.decode('utf8'), output.stderr.decode('utf8')])
+#         # console.print(output.stdout.decode('utf8'))
+#         # console.print(output.stderr.decode('utf8'))
+#     return retval

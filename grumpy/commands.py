@@ -27,6 +27,8 @@ def check_lint():
     Run all registered lint checks, see dir(grumpy.lint)
     for specific check functions
     """
+
+    fstub = "lints"
     results = dict()
     strings = dict()
     for k, v in LINT_CHECKS.items():
@@ -34,12 +36,13 @@ def check_lint():
         FINAL_MESSAGE['issues'] += not res
         strings[k] = string
         results[k] = res
+        yield "lint", k, res, string, fstub
 
     if not all([res for _, res in results.items()]):
-        console.print(" \
-            [red] Issues with lint checks [/red]\n \
-            See grumpy_feedback/lints.txt for saved info \
-        ")
+        console.print(f"""
+            [red] Issues with {fstub} checks [/red]
+            See grumpy_feedback/{fstub}.txt for saved info
+        """)
 
 
 @register

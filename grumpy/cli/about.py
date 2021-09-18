@@ -1,5 +1,7 @@
+from re import T
 from cleo import Command
 from rich.table import Table
+from rich.style import Style
 from ..commands import ALL_CHECKS
 from ..commands import FINAL_MESSAGE
 from .cat import cat, random_phrase
@@ -29,7 +31,7 @@ class AboutCommand(Command):
                 "Great work, I hate it."
             )
         else:
-            console.print(random_phrase())
+            console.print(random_phrase(), style=Style(bold=True, blink=True))
     
     def _handle_what(self):
         what_option = self.option('topic')
