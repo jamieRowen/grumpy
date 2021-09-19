@@ -1,32 +1,40 @@
-from .reporter import console, Reporter
-from .utils import create_register, create_unregister, detect_package_details
-from typing import Tuple
+from .utils import detect_package_details
+from .checks import CheckResponse, CheckCollection
+from .checks import as_CheckResponse, call_check_collection
+from typing import Iterator, Tuple
 from datetime import date
 import re
 import pathlib
 
 
-NEWS_CHECKS = dict()
-
-register = create_register(NEWS_CHECKS)
-unregister = create_unregister(NEWS_CHECKS)
+NEWS_CHECKS = CheckCollection("news")
 
 
-@register
-@Reporter
-def has_newsfile() -> Tuple[bool, str]:
-    """Check for presence of News.md
+def check_news() -> Iterator[CheckResponse]:
+    """Run all registered lnews checks
+
+    This is really just a wrapper for NEWS_CHECKS()
+    callable object, that adds a table summary of output
+    from the resultant generator
     """
-    retval = True, "OK"
+    return call_check_collection(NEWS_CHECKS)
+
+
+@NEWS_CHECKS.register
+@as_CheckResponse
+def has_newsfile() -> Tuple[bool, str]:
+    """Check for presence of NEWS.md
+    """
+    retval = True, ""
     if not pathlib.Path("NEWS.md").exists():
         retval = False, "Missing NEWS.md"
     return retval
 
 
-@register
-@Reporter
+@NEWS_CHECKS.register
+@as_CheckResponse
 def newsfile_format() -> Tuple[bool, str]:
-    """
+    """Check that the NEWS.md has the appropriate format
     """
     message = ""
     failflag = False
@@ -62,13 +70,12 @@ def newsfile_format() -> Tuple[bool, str]:
     retval = True, "Ok"
     if failflag:
         retval = False, message
-        console.print(message)
     return retval
 
 
-@register
-@Reporter
-def news_version_matches_toml():
+@NEWS_CHECKS.register
+@as_CheckResponse
+def news_version_matches_toml() -> Tuple[bool, str]:
     pkg_details = detect_package_details()
     news = _read_news()[0]
     rex = r"\d+.\d+.\d+"
@@ -88,7 +95,6 @@ def news_version_matches_toml():
 
         """
         retval = False, message
-        console.print(message)
     return retval
 
 

@@ -65,10 +65,13 @@ cat = """
 
 def random_phrase():
     phrases = [
-        "Sometimes you can't tell if you're just in a bad mood or everyone around you is being annoying.",
+        "Sometimes you can't tell if you're just in a bad mood\
+             or everyone around you is being annoying.",
         "You need a hug for these issues, go hug a cactus.",
-        "You have a problem with my attitude? I have an attitude ... you have the problem.",
+        "You have a problem with my attitude? I have an attitude ...\
+             you have the problem.",
         "The problem with some people ... is that they exist.",
-        "The worst part of my day is hearing you complain about your lint issues."
+        "The worst part of my day is hearing you complain about your \
+            lint issues."
     ]
     return random.choice(phrases)

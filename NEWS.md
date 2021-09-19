@@ -1,3 +1,16 @@
+## grumpy 0.1.4 _2021-09-18_
+
+    * Redesign interface
+        * All checks return a CheckResponse
+        * A category of check functions is a CheckCollection
+        * A group of categories is a CheckCollectionGroup
+    * Redesigned interface makes it easier to extend individual groups with
+    new checks
+    * Also made it easier to make consistent behaviour when running either
+    a category or a group
+    * Made it easier to create log output consistently
+    * Simple logging mechanism added
+
 ## grumpy 0.1.3 _2021-09-17_
 
     * Update README
