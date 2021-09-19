@@ -15,12 +15,12 @@ grumpy about lint
 
 will execute the currently registered lint checks.
 
-In future version you will be able to explore this information further like what lint checks are registered trough the cli 
+In future versions you will be able to explore this information further like what lint checks are registered trough the cli 
 but for now you can
 
 ```
 from grumpy import lint
-lint.ALL_CHECKS.keys()
+lint.LINT_CHECKS.collection
 ```
 
 to see the methods which are called.
@@ -42,15 +42,19 @@ will show the available top level topics.
 ## Custom checks
 
 It is entirely possible to add your own custom functions to be checked, each topic has a register
-decorator. The runners expect a function which returns a boolean, True if passes check and a string
-which gives some feedback (particularly on a failed check this is useful)
+decorator. The runners expect a function which returns a `grumpy.checks.CheckResponse` containing a label, boolean pass/fail and addition string information.
+
+The `@grumpy.checks.as_CheckReponse` decorator will create the necessary return object from a `Tuple[bool, str]` with the label defaulting to the name of the function.
 
 ```
-from grumpy.lint import register
+from grumpy.lint import LINT_CHECKS
+from grumpy.checks import as_CheckResponse
 
-@register
+
+@LINT_CHECKS.register
+@as_CheckResponse
 def custom_check(): -> Tuple[bool, str]
-    pass
+    return True, "Example"
 ```
 
 ## Contributors
