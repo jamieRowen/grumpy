@@ -6,14 +6,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Check
+        run: ls -a
       - name: Setup python
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
       - name: Grumpy checks
         uses: jamieRowen/grumpy-actions@v1.1
-      - name: Check
-        run: ls -a
       - name: Run checks
         run: grumpy about everything
 
