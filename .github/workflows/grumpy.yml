@@ -13,7 +13,7 @@ jobs:
         with:
           python-version: 3.7
       - name: Grumpy checks
-        uses: jamieRowen/grumpy-actions
+        uses: jamieRowen/grumpy-actions@main
       - name: Run checks
         run: grumpy about everything
 
