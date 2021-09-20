@@ -1,3 +1,4 @@
+from grumpy_checks.docs import check_docs
 from .everything import check_everything
 from .lint import check_lint
 from .news import check_news
@@ -5,5 +6,6 @@ from .news import check_news
 COMMANDS = {
     'everything': check_everything,
     'lint': check_lint,
-    'news': check_news
+    'news': check_news,
+    'docs': check_docs
 }

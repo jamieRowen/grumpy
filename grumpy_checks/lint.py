@@ -64,7 +64,7 @@ def run_flake8() -> Tuple[bool, str]:
         output = subprocess.run(
             'flake8', capture_output=True
         )
-        if output.returncode != 0:
+        if output.returncode:
             retval = False, '\n'.join(
                 [output.stdout.decode('utf8'), output.stderr.decode('utf8')])
     return retval

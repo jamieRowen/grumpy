@@ -28,7 +28,9 @@ class CollectionResponse:
 
 
 def as_CheckResponse(func: Callable[[Any], Tuple[bool, str]]):
-    """Wrap the Tuple[bool, str] result of
+    """Create a CheckResponse
+
+    Wrap the Tuple[bool, str] result of
     a callable with a CheckResponse type output.
 
     This is convenient for allowing the function name

@@ -1,3 +1,4 @@
+from grumpy_checks.docs import DOCS_CHECKS
 from .lint import LINT_CHECKS
 from .news import NEWS_CHECKS
 from .checks import CheckCollectionGroup
@@ -17,3 +18,4 @@ def check_everything():
 
 ALL_CHECKS.register(LINT_CHECKS)
 ALL_CHECKS.register(NEWS_CHECKS)
+ALL_CHECKS.register(DOCS_CHECKS)
