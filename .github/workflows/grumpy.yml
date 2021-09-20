@@ -1,0 +1,11 @@
+on: [push]
+
+jobs:
+  grumpy:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Grumpy checks
+        uses: grumpy-actions@v1
+
