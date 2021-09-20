@@ -131,6 +131,8 @@ class CheckCollectionGroup:
         else:
             console.print(cat, style="black on white")
             console.print("Great Work, I hate it.")
+        if self.issues:
+            exit(1)
 
 
 def call_check_collection(collection: CheckCollection):
@@ -151,6 +153,7 @@ def call_check_collection(collection: CheckCollection):
             )
     if issues:
         console.print(random_phrase())
+        exit(1)
     else:
         console.print(cat, style="black on white")
         console.print("Great Work, I hate it.")

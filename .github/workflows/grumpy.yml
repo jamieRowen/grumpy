@@ -1,0 +1,23 @@
+on: [push]
+
+jobs:
+  grumpy:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Check
+        run: ls -a
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Grumpy checks
+        uses: jamieRowen/grumpy-actions@main
+      - name: Run checks
+        run: grumpy about everything
+      - uses: actions/upload-artifact@v2
+        with:
+          name: grumpy-report
+          path: grumpy_report
+
