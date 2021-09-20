@@ -16,4 +16,8 @@ jobs:
         uses: jamieRowen/grumpy-actions@main
       - name: Run checks
         run: grumpy about everything
+      - uses: actions/upload-artifact@v2
+        with:
+          name: grumpy-report
+          path: grumpy_report
 
