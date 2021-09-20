@@ -18,11 +18,11 @@ with LINT_CHECKS.register(func: Callable[[Any], CheckResponse])
 """
 
 import pathlib
-from typing import Iterator, Tuple
 import subprocess
-from .checks import CheckResponse, CheckCollection
-from .checks import as_CheckResponse, call_check_collection
+from typing import Iterator, Tuple
 
+from .checks import (CheckCollection, CheckResponse, as_CheckResponse,
+                     call_check_collection)
 
 LINT_CHECKS = CheckCollection("lint")
 
@@ -48,6 +48,13 @@ def has_flake8() -> Tuple[bool, str]:
     return retval
 
 
+def _flake8_process():
+    return subprocess.run(
+            'flake8', capture_output=True
+    )
+
+
+
 @LINT_CHECKS.register
 @as_CheckResponse
 def run_flake8() -> Tuple[bool, str]:
@@ -57,14 +64,14 @@ def run_flake8() -> Tuple[bool, str]:
     """
 
     # only run if there is a flake8 file
-    if not has_flake8():
+    if not has_flake8().result:
         retval = False, "No flake 8 file"
     else:
         retval = True, ""
-        output = subprocess.run(
-            'flake8', capture_output=True
-        )
+        output = _flake8_process()
         if output.returncode:
             retval = False, '\n'.join(
                 [output.stdout.decode('utf8'), output.stderr.decode('utf8')])
     return retval
+
+
