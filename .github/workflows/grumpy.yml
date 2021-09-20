@@ -12,6 +12,8 @@ jobs:
           python-version: 3.7
       - name: Grumpy checks
         uses: jamieRowen/grumpy-actions@v1.1
+      - name: Check
+        run: ls -a
       - name: Run checks
         run: grumpy about everything
 
