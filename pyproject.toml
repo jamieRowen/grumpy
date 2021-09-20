@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "grumpy_checks"
-version = "0.1.4"
+version = "0.1.5"
 description = ""
 authors = ["Jamie <jamie@jumpingrivers.com>"]
 
@@ -9,6 +9,7 @@ python = "^3.7"
 rich = "^10.9.0"
 toml = "^0.10.2"
 cleo = "^0.8.1"
+flake8 = "^3.9.2"
 
 [tool.poetry.scripts]
 grumpy = "grumpy_checks.application:main"
