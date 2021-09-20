@@ -1,3 +1,8 @@
+## grumpy_checks 0.1.6 _2021-09-18_
+
+    * Renamed due to existing use of `grumpy` on pypi.org
+    * Manually published to pypi this version
+
 ## grumpy 0.1.4 _2021-09-18_
 
     * Redesign interface
