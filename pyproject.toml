@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "grumpy"
+name = "grumpy_checks"
 version = "0.1.4"
 description = ""
 authors = ["Jamie <jamie@jumpingrivers.com>"]
@@ -11,7 +11,7 @@ toml = "^0.10.2"
 cleo = "^0.8.1"
 
 [tool.poetry.scripts]
-grumpy = "grumpy.application:main"
+grumpy = "grumpy_checks.application:main"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"
