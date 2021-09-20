@@ -7,5 +7,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Grumpy checks
-        uses: actions/grumpy-actions@v1
+        uses: jamieRowen/grumpy-actions@v1
 
