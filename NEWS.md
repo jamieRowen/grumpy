@@ -1,3 +1,13 @@
+## grumpy_checks 0.1.7 _2021-09-22_
+
+    * Added checks for documentation
+    * Added scripts to generate 
+        * codecov report
+        * documetation html
+        * run tests
+    * Added a bunch of test cases for lint and news
+    * Fixed all warnings issues that grumpy raises on itself
+
 ## grumpy_checks 0.1.6 _2021-09-18_
 
     * Renamed due to existing use of `grumpy` on pypi.org
