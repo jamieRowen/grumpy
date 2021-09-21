@@ -33,7 +33,7 @@ jobs:
             --project-base-dir="$(pwd)" \
             --docformat=restructuredtext \
             --intersphinx=https://docs.python.org/3/objects.inv \
-            ./(packagedirectory)
+            ./grumpy_checks
 
     - name: Publish pydoctor documentation to the gh-pages branch
       uses: peaceiris/actions-gh-pages@v3
