@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>grumpy_checks.utils : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header navbar-brand">
+          <a href="https://github.com/jamieRowen/grumpy">grumpy_checks</a>
+          <a href="index.html">API Documentation</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="grumpy_checks.html">grumpy_checks</a></code>.<code><a href="grumpy_checks.utils.html">utils</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/utils.py">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p class="pre">General package utility functions.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id17">
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#ensure_directory">ensure_directory</a></code></td>
+    <td><span>Ensure directory exists.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#has_pyproject_toml">has_pyproject_toml</a></code></td>
+    <td><span>Check whether there is a pyproject.toml file.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#detect_package_details">detect_package_details</a></code></td>
+    <td><span>Grab simple package details.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_find_root">_find_root</a></code></td>
+    <td><span>Find root of project.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_with_str">_with_str</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction private">
+  
+  <a name="grumpy_checks.utils._find_root">
+    
+  </a>
+  <a name="_find_root">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_find_root</span>():
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/utils.py#L10">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Find root of project.
+
+Assumes that this is a project that has been created using
+poetry and therefore has at least a pyproject.toml or poetry.lock file
+at its root
+
+@returns: pathlib.Path - estimate of root of project</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">pathlib.Path</a></code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="grumpy_checks.utils.ensure_directory">
+    
+  </a>
+  <a name="ensure_directory">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">ensure_directory</span>(dir):
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/utils.py#L29">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Ensure directory exists.
+
+@param dir: str, path to directory.
+@returns: None</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">dir</td><td><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="grumpy_checks.utils._with_str">
+    
+  </a>
+  <a name="_with_str">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_with_str</span>(func):
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/utils.py#L38">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">func</td><td><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/typing.html#typing.Callable">Callable</a></code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/typing.html#typing.Callable">Callable</a></code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="grumpy_checks.utils.has_pyproject_toml">
+    
+  </a>
+  <a name="has_pyproject_toml">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">has_pyproject_toml</span>():
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/utils.py#L48">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Check whether there is a pyproject.toml file.
+
+@returns: bool - True if file exists</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="grumpy_checks.utils.detect_package_details">
+    
+  </a>
+  <a name="detect_package_details">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">detect_package_details</span>():
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/utils.py#L56">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Grab simple package details.
+
+@returns: dict{
+    name: str,
+    version: str
+}</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict">Dict</a></code>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://github.com/jamieRowen/grumpy">grumpy_checks</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 21.2.2 at 2021-09-21 23:19:53.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

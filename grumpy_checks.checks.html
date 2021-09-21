@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>grumpy_checks.checks : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header navbar-brand">
+          <a href="https://github.com/jamieRowen/grumpy">grumpy_checks</a>
+          <a href="index.html">API Documentation</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="grumpy_checks.html">grumpy_checks</a></code>.<code><a href="grumpy_checks.checks.html">checks</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p class="pre">Checks Module.
+
+This module defines objects common across checks.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3">
+  
+  <tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#console">console</a></code></td>
+    <td><span>Console object for printing output to terminal.</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#CORRECT">CORRECT</a></code></td>
+    <td><span>Constant representing a pass.</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#INCORRECT">INCORRECT</a></code></td>
+    <td><span>Constant representing a fail.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="grumpy_checks.checks.CheckResponse.html">CheckResponse</a></code></td>
+    <td><span>Check Reponse.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="grumpy_checks.checks.CollectionResponse.html">CollectionResponse</a></code></td>
+    <td><span>Collection Response.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#as_CheckResponse">as_CheckResponse</a></code></td>
+    <td><span>Create a CheckResponse.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="grumpy_checks.checks.CheckCollection.html">CheckCollection</a></code></td>
+    <td><span>Check Collection.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="grumpy_checks.checks.CheckCollectionGroup.html">CheckCollectionGroup</a></code></td>
+    <td><span>Check Collection Group.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#call_check_collection">call_check_collection</a></code></td>
+    <td><span>Run a CheckCollection group of checks.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basevariable">
+  
+  <a name="grumpy_checks.checks.console">
+    
+  </a>
+  <a name="console">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">console</span> =
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L15">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="pre">Console object for printing output to terminal.</p></div> (type: <code>Console</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="grumpy_checks.checks.CORRECT">
+    
+  </a>
+  <a name="CORRECT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">CORRECT</span> =
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L18">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="pre">Constant representing a pass.</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="grumpy_checks.checks.INCORRECT">
+    
+  </a>
+  <a name="INCORRECT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">INCORRECT</span> =
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L21">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="pre">Constant representing a fail.</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)
+  </div>
+</div><div class="basefunction">
+  
+  <a name="grumpy_checks.checks.as_CheckResponse">
+    
+  </a>
+  <a name="as_CheckResponse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">as_CheckResponse</span>(func):
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L73">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Create a CheckResponse.
+
+Wrap the Tuple[bool, str] result of
+a callable with a CheckResponse type output.
+
+This is convenient for allowing the function name
+at definition to be used as the name for the CheckResponse
+object.
+
+@param func: A Callable object that takes any arguments
+    and returns a Tuple[bool, str]
+
+@returns: A Callable, original function definition with wrapped
+    return value.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">func</td><td><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/typing.html#typing.Callable">Callable</a>[[<a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>], <a href="https://docs.python.org/3/library/typing.html#typing.Tuple">Tuple</a>[<a href="https://docs.python.org/3/library/functions.html#bool">bool</a>, <a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]]</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/typing.html#typing.Callable">Callable</a></code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="grumpy_checks.checks.call_check_collection">
+    
+  </a>
+  <a name="call_check_collection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">call_check_collection</span>(collection):
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L329">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Run a CheckCollection group of checks.
+
+Created to allow the same table drawing output interface
+to be runnable for individual groups of check functions
+(a single CheckCollection object).
+
+@param collection: CheckCollection object
+
+Exits with exitcode = 1 if any checks fail, else 0.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">collection</td><td><span class="undocumented">Undocumented</span> (type: <code><a href="grumpy_checks.checks.CheckCollection.html">CheckCollection</a></code>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://github.com/jamieRowen/grumpy">grumpy_checks</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 21.2.2 at 2021-09-21 23:19:53.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

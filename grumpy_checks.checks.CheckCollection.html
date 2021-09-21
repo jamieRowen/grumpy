@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>grumpy_checks.checks.CheckCollection : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header navbar-brand">
+          <a href="https://github.com/jamieRowen/grumpy">grumpy_checks</a>
+          <a href="index.html">API Documentation</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="grumpy_checks.html">grumpy_checks</a></code>.<code><a href="grumpy_checks.checks.html">checks</a></code>.<code><a href="grumpy_checks.checks.CheckCollection.html">CheckCollection</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">CheckCollection</span>: <a href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L96">(source)</a></code></p>
+        <p><a href="classIndex.html#grumpy_checks.checks.CheckCollection">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p class="pre">Check Collection.
+
+A class that defines an object whose primary function is to
+allow grouping of one of more check functions into a topic.
+
+Objects of class CheckCollection are themselves Callable, returning
+a generator for the results of individual check functions within the
+collection.
+
+Methods
+=======
+    - register: function closure (decorator) to add an additional
+    Callable to the collection
+    - unregister: remove Callable from collection by name
+    - get_registered: return a list of the names of registered
+    Callables
+
+Attributes
+==========
+
+@ivar name: str a label for the collection
+@ivar __name__: see name, for compatibility with other functions
+@ivar collection: dictionary str -&gt; Callable containing functions
+   registered in the collection
+@ivar logging: bool, should output be logged to file
+@ivar issues: int, increments whenever a check function fails
+@ivar message: str, accumulates all messages from check functions</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id6">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__">__init__</a></code></td>
+    <td><span>Initialise CheckCollection.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#name">name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#__name__">__name__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#collection">collection</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#logging">logging</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#issues">issues</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#message">message</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#register">register</a></code></td>
+    <td><span>Add Callable to collection.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#unregister">unregister</a></code></td>
+    <td><span>Unregister Callable from collection.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_registered">get_registered</a></code></td>
+    <td><span>Get registered function names.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__call__">__call__</a></code></td>
+    <td><span>Call checks in self.collection.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="grumpy_checks.checks.CheckCollection.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, name, logging=True):
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L126">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Initialise CheckCollection.
+
+@param name: str, a label for the collection
+@param logging: bool, should output be logged to file on calling
+    check functions</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)</td></tr><tr><td></td><td class="fieldArg">logging</td><td><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>)</td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="grumpy_checks.checks.CheckCollection.name">
+    
+  </a>
+  <a name="name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">name</span> =
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L133">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="grumpy_checks.checks.CheckCollection.__name__">
+    
+  </a>
+  <a name="__name__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">__name__</span> =
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L134">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="grumpy_checks.checks.CheckCollection.collection">
+    
+  </a>
+  <a name="collection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">collection</span> =
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L135">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="grumpy_checks.checks.CheckCollection.logging">
+    
+  </a>
+  <a name="logging">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">logging</span> =
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L136">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="grumpy_checks.checks.CheckCollection.issues">
+    
+  </a>
+  <a name="issues">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">issues</span> =
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L137">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/functions.html#int">int</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="grumpy_checks.checks.CheckCollection.message">
+    
+  </a>
+  <a name="message">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">message</span> =
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L138">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="grumpy_checks.checks.CheckCollection.register">
+    
+  </a>
+  <a name="register">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">register</span>(self, func):
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L140">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Add Callable to collection.
+
+Function closure, to be used as decorator::
+
+    # e.g
+    @GROUP.register
+    def f(): pass
+
+Add a Callable, typically a function, to self.collection,
+associating the function with the group of similar checks.
+
+@param func: Callable that returns a CheckResponse
+
+@returns: Callable, after adding it to the self.collection dictionary.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">func</td><td><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/typing.html#typing.Callable">Callable</a>[[<a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>], <a href="grumpy_checks.checks.CheckResponse.html">CheckResponse</a>]</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/typing.html#typing.Callable">Callable</a>[[<a href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>], <a href="grumpy_checks.checks.CheckResponse.html">CheckResponse</a>]</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="grumpy_checks.checks.CheckCollection.unregister">
+    
+  </a>
+  <a name="unregister">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">unregister</span>(self, name):
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L165">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Unregister Callable from collection.
+
+Remove a Callable from the self.collection dictionary,
+on running checks the removed function will no longer
+be tested by grumpy.
+
+@param name: str, name of Callable to remove, see
+    self.get_registered()
+
+@returns: None</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="grumpy_checks.checks.CheckCollection.get_registered">
+    
+  </a>
+  <a name="get_registered">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_registered</span>(self):
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L185">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Get registered function names.
+
+Get names of Callables in self.collection,
+equivalent to list(self.collection.keys())
+
+@returns: List[str]: list of names of functions in self.collection</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/typing.html#typing.List">List</a>[<a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="grumpy_checks.checks.CheckCollection.__call__">
+    
+  </a>
+  <a name="__call__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__call__</span>(self):
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/checks.py#L195">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Call checks in self.collection.
+
+@returns Generator object yielding results of each check
+in self.collection.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/typing.html#typing.Iterator">Iterator</a>[<a href="grumpy_checks.checks.CollectionResponse.html">CollectionResponse</a>]</code>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://github.com/jamieRowen/grumpy">grumpy_checks</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 21.2.2 at 2021-09-21 23:19:53.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

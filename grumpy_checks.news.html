@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>grumpy_checks.news : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header navbar-brand">
+          <a href="https://github.com/jamieRowen/grumpy">grumpy_checks</a>
+          <a href="index.html">API Documentation</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="grumpy_checks.html">grumpy_checks</a></code>.<code><a href="grumpy_checks.news.html">news</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/news.py">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p class="pre">NEWS checks.
+
+This module collates check functions related
+to checking the quality of NEWS file in
+a project.
+
+Objects
+=======
+NEWS_CHECKS: CheckCollection, the various functions to check
+
+Functions
+=========
+check_news: run all registered doc checking functions.
+has_newfile: Check for presence of a newsfile.
+newsfile_format: Ensure NEWS.md has correct format.
+news_version_matches_toml: Ensure version match in NEWS.md and pyproject.toml.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id16">
+  
+  <tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#NEWS_CHECKS">NEWS_CHECKS</a></code></td>
+    <td><span>CheckCollection object for all news checks.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#check_news">check_news</a></code></td>
+    <td><span>Run all registered news checks.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#has_newsfile">has_newsfile</a></code></td>
+    <td><span>Check for presence of NEWS.md.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#newsfile_format">newsfile_format</a></code></td>
+    <td><span>Check that the NEWS.md has the appropriate format.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#news_version_matches_toml">news_version_matches_toml</a></code></td>
+    <td><span>Check NEWS.md and pyproject.toml version match.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_has_necessary_files">_has_necessary_files</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_read_news">_read_news</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_get_news">_get_news</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basevariable">
+  
+  <a name="grumpy_checks.news.NEWS_CHECKS">
+    
+  </a>
+  <a name="NEWS_CHECKS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">NEWS_CHECKS</span> =
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/news.py#L28">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="pre">CheckCollection object for all news checks.</p></div> (type: <code><a href="grumpy_checks.checks.CheckCollection.html">CheckCollection</a></code>)
+  </div>
+</div><div class="basefunction">
+  
+  <a name="grumpy_checks.news.check_news">
+    
+  </a>
+  <a name="check_news">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_news</span>():
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/news.py#L32">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Run all registered news checks.
+
+This is really just a wrapper for NEWS_CHECKS()
+callable object, that adds a table summary of output
+from the resultant generator.
+
+@returns: Generator object of CheckResonse</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/typing.html#typing.Iterator">Iterator</a>[<a href="grumpy_checks.checks.CheckResponse.html">CheckResponse</a>]</code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="grumpy_checks.news.has_newsfile">
+    
+  </a>
+  <a name="has_newsfile">
+    
+  </a>
+  <div class="functionHeader">
+    @NEWS_CHECKS.register<br />@as_CheckResponse<br />
+    <span class="py-keyword">def</span> <span class="py-defname">has_newsfile</span>():
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/news.py#L44">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Check for presence of NEWS.md.
+
+@returns: CheckResponse detailing result of check.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="grumpy_checks.checks.CheckResponse.html">CheckResponse</a></code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="grumpy_checks.news.newsfile_format">
+    
+  </a>
+  <a name="newsfile_format">
+    
+  </a>
+  <div class="functionHeader">
+    @NEWS_CHECKS.register<br />@as_CheckResponse<br />
+    <span class="py-keyword">def</span> <span class="py-defname">newsfile_format</span>():
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/news.py#L57">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Check that the NEWS.md has the appropriate format.
+
+@returns: CheckResponse detailing result of check.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="grumpy_checks.checks.CheckResponse.html">CheckResponse</a></code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="grumpy_checks.news._has_necessary_files">
+    
+  </a>
+  <a name="_has_necessary_files">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_has_necessary_files</span>():
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/news.py#L104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple">Tuple</a>[<a href="https://docs.python.org/3/library/functions.html#bool">bool</a>, <a href="https://docs.python.org/3/library/typing.html#typing.Tuple">Tuple</a>[<a href="https://docs.python.org/3/library/functions.html#bool">bool</a>, <a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]]</code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="grumpy_checks.news.news_version_matches_toml">
+    
+  </a>
+  <a name="news_version_matches_toml">
+    
+  </a>
+  <div class="functionHeader">
+    @NEWS_CHECKS.register<br />@as_CheckResponse<br />
+    <span class="py-keyword">def</span> <span class="py-defname">news_version_matches_toml</span>():
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/news.py#L117">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Check NEWS.md and pyproject.toml version match.
+
+@returns: CheckResponse detailing result of check.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="grumpy_checks.checks.CheckResponse.html">CheckResponse</a></code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="grumpy_checks.news._read_news">
+    
+  </a>
+  <a name="_read_news">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_read_news</span>():
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/news.py#L149">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="grumpy_checks.news._get_news">
+    
+  </a>
+  <a name="_get_news">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_get_news</span>():
+    <a class="functionSourceLink" href="https://github.com/jamieRowen/grumpy/tree/a31ea7db4ce895f6328db37c4d603364de3fce6b/grumpy_checks/news.py#L156">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://github.com/jamieRowen/grumpy">grumpy_checks</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 21.2.2 at 2021-09-21 23:19:53.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
