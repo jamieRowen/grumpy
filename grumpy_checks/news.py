@@ -1,4 +1,4 @@
-from .utils import detect_package_details
+from .utils import detect_package_details, has_pyproject_toml
 from .checks import CheckResponse, CheckCollection
 from .checks import as_CheckResponse, call_check_collection
 from typing import Iterator, Tuple
@@ -36,6 +36,9 @@ def has_newsfile() -> Tuple[bool, str]:
 def newsfile_format() -> Tuple[bool, str]:
     """Check that the NEWS.md has the appropriate format
     """
+    has_files, retval = _has_necessary_files()
+    if not has_files:
+        return retval
     message = ""
     failflag = False
     pkg_details = detect_package_details()
@@ -73,9 +76,23 @@ def newsfile_format() -> Tuple[bool, str]:
     return retval
 
 
+def _has_necessary_files() -> Tuple[bool, Tuple[bool, str]]:
+    has_news = has_newsfile()
+    has_toml = has_pyproject_toml()
+    if not has_toml and not has_news.result:
+        return False, (False, "Missing [NEWS.md, pyproject.toml]")
+    elif not has_news.result:
+        return False, (has_news.result, has_news.info)
+    elif not has_toml:
+        return False, (False, "Missing pyproject.toml")
+
+
 @NEWS_CHECKS.register
 @as_CheckResponse
 def news_version_matches_toml() -> Tuple[bool, str]:
+    has_files, retval = _has_necessary_files()
+    if not has_files:
+        return retval
     pkg_details = detect_package_details()
     news = _read_news()[0]
     rex = r"\d+.\d+.\d+"
@@ -99,6 +116,13 @@ def news_version_matches_toml() -> Tuple[bool, str]:
 
 
 def _read_news() -> str:
+    if has_newsfile():
+        return _get_news()
+    else:
+        return ""
+
+
+def _get_news() -> str:
     with open("NEWS.md") as f:
         res = f.readlines()
     return res

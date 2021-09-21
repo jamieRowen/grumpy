@@ -3,6 +3,7 @@ import functools
 import pathlib
 import toml
 from pathlib import Path
+from warnings import warn
 
 
 def ensure_directory(dir: str):
@@ -67,4 +68,6 @@ def detect_package_details():
             'name': x['tool']['poetry']['name'],
             'version': x['tool']['poetry']['version']
         }
+    else:
+        warn("No pyproject.toml file")
     return retval
