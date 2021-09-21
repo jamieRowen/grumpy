@@ -85,6 +85,8 @@ def _has_necessary_files() -> Tuple[bool, Tuple[bool, str]]:
         return False, (has_news.result, has_news.info)
     elif not has_toml:
         return False, (False, "Missing pyproject.toml")
+    else:
+        return True, (True, "")
 
 
 @NEWS_CHECKS.register

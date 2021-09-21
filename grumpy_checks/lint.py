@@ -54,7 +54,6 @@ def _flake8_process():
     )
 
 
-
 @LINT_CHECKS.register
 @as_CheckResponse
 def run_flake8() -> Tuple[bool, str]:
@@ -73,5 +72,3 @@ def run_flake8() -> Tuple[bool, str]:
             retval = False, '\n'.join(
                 [output.stdout.decode('utf8'), output.stderr.decode('utf8')])
     return retval
-
-
