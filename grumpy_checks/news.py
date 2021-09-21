@@ -1,40 +1,65 @@
-from .utils import detect_package_details, has_pyproject_toml
-from .checks import CheckResponse, CheckCollection
-from .checks import as_CheckResponse, call_check_collection
-from typing import Iterator, Tuple
-from datetime import date
-import re
+"""NEWS checks.
+
+This module collates check functions related
+to checking the quality of NEWS file in
+a project.
+
+Objects
+=======
+NEWS_CHECKS: CheckCollection, the various functions to check
+
+Functions
+=========
+check_news: run all registered doc checking functions.
+has_newfile: Check for presence of a newsfile.
+newsfile_format: Ensure NEWS.md has correct format.
+news_version_matches_toml: Ensure version match in NEWS.md and pyproject.toml.
+"""
+
 import pathlib
+import re
+from datetime import date
+from typing import Iterator, Tuple
 
+from .checks import (CheckCollection, CheckResponse, as_CheckResponse,
+                     call_check_collection)
+from .utils import detect_package_details, has_pyproject_toml, _find_root
 
-NEWS_CHECKS = CheckCollection("news")
+NEWS_CHECKS: CheckCollection = CheckCollection("news")
+"""CheckCollection object for all news checks."""
 
 
 def check_news() -> Iterator[CheckResponse]:
-    """Run all registered lnews checks
+    """Run all registered news checks.
 
     This is really just a wrapper for NEWS_CHECKS()
     callable object, that adds a table summary of output
-    from the resultant generator
+    from the resultant generator.
+
+    @returns: Generator object of CheckResonse
     """
     return call_check_collection(NEWS_CHECKS)
 
 
 @NEWS_CHECKS.register
 @as_CheckResponse
-def has_newsfile() -> Tuple[bool, str]:
-    """Check for presence of NEWS.md
+def has_newsfile() -> CheckResponse:
+    """Check for presence of NEWS.md.
+
+    @returns: CheckResponse detailing result of check.
     """
     retval = True, ""
-    if not pathlib.Path("NEWS.md").exists():
+    if not pathlib.Path(_find_root(), "NEWS.md").exists():
         retval = False, "Missing NEWS.md"
     return retval
 
 
 @NEWS_CHECKS.register
 @as_CheckResponse
-def newsfile_format() -> Tuple[bool, str]:
-    """Check that the NEWS.md has the appropriate format
+def newsfile_format() -> CheckResponse:
+    """Check that the NEWS.md has the appropriate format.
+
+    @returns: CheckResponse detailing result of check.
     """
     has_files, retval = _has_necessary_files()
     if not has_files:
@@ -91,7 +116,11 @@ def _has_necessary_files() -> Tuple[bool, Tuple[bool, str]]:
 
 @NEWS_CHECKS.register
 @as_CheckResponse
-def news_version_matches_toml() -> Tuple[bool, str]:
+def news_version_matches_toml() -> CheckResponse:
+    """Check NEWS.md and pyproject.toml version match.
+
+    @returns: CheckResponse detailing result of check.
+    """
     has_files, retval = _has_necessary_files()
     if not has_files:
         return retval
@@ -125,6 +154,6 @@ def _read_news() -> str:
 
 
 def _get_news() -> str:
-    with open("NEWS.md") as f:
+    with open(pathlib.Path(_find_root(), "NEWS.md")) as f:
         res = f.readlines()
     return res

@@ -2,9 +2,9 @@ from grumpy_checks.checks import CheckResponse
 import pyfakefs.fake_filesystem_unittest
 from grumpy_checks.news import (
     has_newsfile, newsfile_format,
-    news_version_matches_toml, _read_news
+    news_version_matches_toml
 )
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
 
 class TestNewsNoNewsNoToml(pyfakefs.fake_filesystem_unittest.TestCase):

@@ -1,3 +1,18 @@
+"""Cat.
+
+Grumpy cat output strings for feedback on checks.
+
+Objects
+=======
+    - cat: str, grumpy cat ascii art
+
+Functions
+=========
+    - random_phrase: generate a random grumpy feedback phrase
+        displaying displeasure at a developers incompetence.
+"""
+
+
 import random
 
 cat = """
@@ -61,9 +76,16 @@ cat = """
 ████▓▓▓▓▓▓▒▒▒▒▓▓▓▓▓▓▒▒▓▒▒▒▒▒▒▒░─░░░─────────
 ████▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░▒░─────────
 """
+"""Grumpy Cat Ascii art."""
 
 
 def random_phrase():
+    """Generate a random phrase.
+
+    Returns
+    -------
+    str, a random grumpy phrase.
+    """
     phrases = [
         "Sometimes you can't tell if you're just in a bad mood\
              or everyone around you is being annoying.",

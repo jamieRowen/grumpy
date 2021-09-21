@@ -1,10 +1,10 @@
 from unittest.mock import MagicMock, patch
 from grumpy_checks.lint import has_flake8, run_flake8
 from grumpy_checks.checks import CheckResponse
-import pyfakefs.fake_filesystem_unittest
+from pyfakefs.fake_filesystem_unittest import TestCase
 
 
-class TestLintNoFlake8(pyfakefs.fake_filesystem_unittest.TestCase):
+class TestLintNoFlake8(TestCase):
 
     def setUp(self):
         self.setUpPyfakefs(allow_root_user=False)
@@ -39,7 +39,7 @@ class TestLintNoFlake8(pyfakefs.fake_filesystem_unittest.TestCase):
         self.assertEqual(res.info, "No flake 8 file")
 
 
-class TestLintIssues(pyfakefs.fake_filesystem_unittest.TestCase):
+class TestLintIssues(TestCase):
 
     def setUp(self) -> None:
         self.setUpPyfakefs(allow_root_user=False)
@@ -69,7 +69,7 @@ class TestLintIssues(pyfakefs.fake_filesystem_unittest.TestCase):
         self.assertTrue(len(res.info))
 
 
-class TestLintOK(pyfakefs.fake_filesystem_unittest.TestCase):
+class TestLintOK(TestCase):
 
     def setUp(self) -> None:
         self.setUpPyfakefs(allow_root_user=False)

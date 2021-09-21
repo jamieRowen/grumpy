@@ -1,16 +1,41 @@
-from typing import Callable, Any
+"""General package utility functions."""
+
+from typing import Callable, Any, Dict
 import functools
 import pathlib
 import toml
-from pathlib import Path
 from warnings import warn
 
 
-def ensure_directory(dir: str):
-    Path(dir).mkdir(parents=True, exist_ok=True)
+def _find_root() -> pathlib.Path:
+    """Find root of project.
+
+    Assumes that this is a project that has been created using
+    poetry and therefore has at least a pyproject.toml or poetry.lock file
+    at its root
+
+    @returns: pathlib.Path - estimate of root of project
+    """
+    cwd = pathlib.Path.cwd()
+    while not (
+        pathlib.Path(cwd, "pyproject.toml").exists() or
+        pathlib.Path(cwd, "poetry.lock").exists() or
+        pathlib.Path("/") == cwd
+    ):
+        cwd = cwd.parent
+    return cwd
 
 
-def with_str(func: Callable) -> Callable:
+def ensure_directory(dir: str) -> None:
+    """Ensure directory exists.
+
+    @param dir: str, path to directory.
+    @returns: None
+    """
+    pathlib.Path(dir).mkdir(parents=True, exist_ok=True)
+
+
+def _with_str(func: Callable) -> Callable:
     class FuncName:
         def __call__(self, *args: Any, **kwargs: Any) -> Any:
             return func(*args, **kwargs)
@@ -20,40 +45,18 @@ def with_str(func: Callable) -> Callable:
     return functools.wraps(func)(FuncName())
 
 
-def create_register(d: dict) -> Callable:
-    def wrapper_register(func: Callable) -> Callable:
-        d[func.__name__] = func
+def has_pyproject_toml() -> bool:
+    """Check whether there is a pyproject.toml file.
 
-        @functools.wraps(func)
-        def inner_register():
-            return func()
-        return inner_register
-    return wrapper_register
-
-
-def create_unregister(d: dict) -> Callable:
-    def wrapper_unregister(func: Callable) -> Callable:
-
-        @functools.wraps(func)
-        def inner_unregister(name: str) -> None:
-            d.pop(name)
-            return None
-        return inner_unregister
-    return wrapper_unregister
-
-
-def has_pyproject_toml():
-    """Check whether there is a pyproject.toml file
+    @returns: bool - True if file exists
     """
-    return pathlib.Path("pyproject.toml").exists()
+    return pathlib.Path(_find_root(), "pyproject.toml").exists()
 
 
-def detect_package_details():
-    """Grab simple package details
+def detect_package_details() -> Dict:
+    """Grab simple package details.
 
-    Returns
-    -------
-    {
+    @returns: dict{
         name: str,
         version: str
     }
@@ -63,7 +66,7 @@ def detect_package_details():
         'version': ''
     }
     if has_pyproject_toml():
-        x = toml.load("pyproject.toml")
+        x = toml.load(pathlib.Path(_find_root(), "pyproject.toml"))
         retval = {
             'name': x['tool']['poetry']['name'],
             'version': x['tool']['poetry']['version']

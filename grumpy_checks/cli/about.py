@@ -1,3 +1,5 @@
+"""Define CLI grumpy about <command>."""
+
 from cleo import Command
 from rich.table import Table
 from ..commands import COMMANDS
@@ -6,7 +8,7 @@ from ..checks import console
 
 class AboutCommand(Command):
     """
-    Grumpily runs a check
+    Grumpily runs a check.
 
     about
         {command : What are you grumpy about?}
@@ -14,6 +16,7 @@ class AboutCommand(Command):
     """
 
     def handle(self):
+        """Handle command."""
         if self.argument('command') == "what":
             return self._handle_what()
         command = COMMANDS[self.argument('command')]
